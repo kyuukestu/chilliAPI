@@ -29,18 +29,8 @@ router.post("/view", async function (req, res) {
   }/chillies/`;
 
   let response = await axios.get(server_URL);
-
   console.log("View status: " + response.status);
 
-  // const results = response.data.map((chili) => {
-  //   const newRow = document.createElement("tr");
-  //   chili.map((item) => {
-  //     const col = document.createElement("td");
-  //     const text = document.createTextNode(item);
-  //     col.appendChild(text);
-  //     newRow.appendChild(document.createElement("td"));
-  //   });
-  // });
   res.render("changed", {
     status: response.status,
     data: JSON.stringify(response.data, 4),

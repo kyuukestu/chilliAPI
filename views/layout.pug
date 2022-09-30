@@ -93,7 +93,6 @@ html
               name="chId"
               min="0"
               placeholder="Enter ID (or leave blank to fetch all)")
-            button(type="reset") Reset
             button(type="submit") Fetch
       div
         form(id="add" action="/add" method="POST")
@@ -116,7 +115,6 @@ html
               name="chHeat"
               placeholder="Heat"
               required)
-            button(type="reset") Reset
             button(type="submit") Add
         p= addedData
       div
@@ -147,7 +145,6 @@ html
               name="chHeat"
               placeholder="Heat"
               required)
-            button(type="reset") Reset
             button(type="submit") Update
       div
         form(id="remove" action="/delete" method="POST")
@@ -158,7 +155,6 @@ html
               name="chId"
               min="0"
               placeholder="Enter ID")
-            button(type="reset") Reset
             button(type="submit") Remove
     div(class="result-wrapper")
       block response-data
