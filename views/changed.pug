@@ -2,8 +2,7 @@ extends layout
 
 block response-data
   div(class="result-content")
-  div(class="statusDisplay")
-      | Status : 
+    div(class="statusDisplay") Status :
       span(class="response-status") #{status}
-  div(class="bodyDisplay")
+    div(class="bodyDisplay")
       span(class="response-body") #{data}
