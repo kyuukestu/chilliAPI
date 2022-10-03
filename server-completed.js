@@ -61,6 +61,7 @@ app.delete("/chillies/:id", (req, res) => {
   let deletedChilli = chillies.find((c) => c.id == req.params.id);
 
   if (!deletedChilli) {
+    console.log("No chilli found");
     res.sendStatus(400);
   } else {
     chillies = chillies.filter((c) => c.id != req.params.id);
@@ -69,7 +70,7 @@ app.delete("/chillies/:id", (req, res) => {
 });
 
 app.use("/", (req, res) => {
-  res.sendStatus("404");
+  res.sendStatus(404);
 });
 
 app.listen(3001, () => {

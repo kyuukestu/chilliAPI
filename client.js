@@ -20,7 +20,7 @@ let server_URL = "";
 
 router.get("/", (req, res) => {
   console.log("Loading Homepage");
-  res.render("index", { data: "empty" });
+  res.render("changed", { data: "" });
 });
 
 router.post("/view", async function (req, res) {
@@ -56,13 +56,20 @@ router.post("/update", async function (req, res) {
     req.get("host").slice(0, -4) + serverPort
   }/chillies/${req.body.id}`;
 
-  let response = await axios.put(server_URL, req.body);
-
-  console.log("Update status: " + response.status);
-  res.render("changed", {
-    status: response.status,
-    data: "Updated " + JSON.stringify(req.body),
-  });
+  let response = await axios
+    .put(server_URL, req.body)
+    .then((response) => {
+      console.log("Update status: " + response.status);
+      res.render("changed", {
+        status: response.status,
+        data: "Updated " + JSON.stringify(req.body),
+      });
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+      }
+    });
 });
 
 router.post("/delete", async function (req, res) {
@@ -70,13 +77,20 @@ router.post("/delete", async function (req, res) {
     req.get("host").slice(0, -4) + serverPort
   }/chillies/${req.body.chId}`;
 
-  let response = await axios.delete(server_URL);
-
-  console.log("Delete status: " + response.status);
-  res.render("changed", {
-    status: response.status,
-    data: `Deleted chili ${req.body.chId}`,
-  });
+  let response = await axios
+    .delete(server_URL)
+    .then((response) => {
+      console.log("Delete status: " + response.status);
+      res.render("changed", {
+        status: response.status,
+        data: `Deleted chili ${req.body.chId}`,
+      });
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+      }
+    });
 });
 
 app.use("/", router);
